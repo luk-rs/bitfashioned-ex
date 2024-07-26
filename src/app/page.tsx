@@ -1,3 +1,10 @@
+'use client'
+
+import Disconnected from '@/components/disconnected'
+import { useAccount } from 'wagmi'
+
 export default function Home() {
-  return <main>Disconnected</main>
+  const { address } = useAccount()
+
+  return <main>{!address && <Disconnected />}</main>
 }
