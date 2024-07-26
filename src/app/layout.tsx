@@ -4,6 +4,7 @@ import { Reddit_Mono } from 'next/font/google'
 import { headers } from 'next/headers'
 import { ReactNode } from 'react'
 import { cookieToInitialState } from 'wagmi'
+import Header from './containers/header'
 import './globals.css'
 import { Providers } from './providers'
 
@@ -20,8 +21,11 @@ export default function RootLayout(props: { children: ReactNode }) {
   const initialState = cookieToInitialState(getConfig(), headers().get('cookie'))
   return (
     <html lang='en'>
-      <body className={inter.className}>
-        <Providers initialState={initialState}>{props.children}</Providers>
+      <body className={`${inter.className} h-lvh flex flex-col`}>
+        <Providers initialState={initialState}>
+          <Header />
+          {props.children}
+        </Providers>
       </body>
     </html>
   )

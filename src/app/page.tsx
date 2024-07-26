@@ -1,10 +1,10 @@
 'use client'
 
-import Disconnected from '@/components/disconnected'
 import { useAccount } from 'wagmi'
+import Disconnected from './pages/disconnected'
 
 export default function Home() {
   const { address } = useAccount()
 
-  return <main>{!address && <Disconnected />}</main>
+  return <main className='flex-1 flex flex-col'>{!address && <Disconnected />}</main>
 }
