@@ -1,7 +1,7 @@
 'use client'
 
 import { useAccount } from 'wagmi'
-import Disconnected from './pages/disconnected'
+import Disconnected from './containers/disconnected'
 
 export default function Home() {
   const { address } = useAccount()

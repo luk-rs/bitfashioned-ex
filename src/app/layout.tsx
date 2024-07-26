@@ -1,6 +1,6 @@
 import { getConfig } from '@/wagmi'
 import type { Metadata } from 'next'
-import { Reddit_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { headers } from 'next/headers'
 import { ReactNode } from 'react'
 import { cookieToInitialState } from 'wagmi'
@@ -8,7 +8,7 @@ import Header from './containers/header'
 import './globals.css'
 import { Providers } from './providers'
 
-const inter = Reddit_Mono({
+const inter = Inter({
   subsets: ['latin']
 })
 
