@@ -1,8 +1,8 @@
 'use client'
 
+import { formatDecimals } from '@/app/lib/rounding'
 import Image from 'next/image'
 import { useAccount, useBalance } from 'wagmi'
-import { formatDecimals } from '../lib/rounding'
 import SignInButton from './sign-in-button'
 
 export default function Header() {
