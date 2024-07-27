@@ -17,10 +17,7 @@ export default function SignInButton() {
   }
 
   return (
-    <button
-      className='ml-auto flex flex-row space-x-4 bg-gray-600 p-2 rounded text-sm'
-      onClick={!address ? signIn : signOut}
-    >
+    <button className='flex flex-row space-x-4 bg-gray-600 p-2 rounded text-sm' onClick={!address ? signIn : signOut}>
       <Image alt='metamask' src='metamask_icon.svg' height={20} width={20} />
       <p>
         {status === 'connecting'
