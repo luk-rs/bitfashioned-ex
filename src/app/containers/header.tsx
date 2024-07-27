@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import SignInButton from './sign-in-button'
 
 export default function Header() {
   return (
@@ -9,14 +10,7 @@ export default function Header() {
         <Image alt='cms_icon' src='CMS_icon.svg' width={31} height={31} />
         <span>CMS</span>
       </div>
-      <button
-        className='ml-auto'
-        onClick={() => {
-          console.log('clicked biatch')
-        }}
-      >
-        Sign In
-      </button>
+      <SignInButton />
     </div>
   )
 }
