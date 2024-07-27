@@ -1,7 +1,7 @@
 'use client'
 
-import CMS from '@/pages/home/cms'
-import Disconnected from '@/pages/home/disconnected'
+import CMS from '@/app/pages/home/cms'
+import Disconnected from '@/app/pages/home/disconnected'
 import { useAccount } from 'wagmi'
 
 export default function Home() {
