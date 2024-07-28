@@ -1,6 +1,6 @@
 'use client'
 
-import { formatDecimals } from '@/app/lib/rounding'
+import { formatDecimals } from '@/app/utils/rounding'
 import Image from 'next/image'
 import { useAccount, useBalance } from 'wagmi'
 import SignInButton from './sign-in-button'
@@ -8,7 +8,7 @@ import SignInButton from './sign-in-button'
 export default function Header() {
   const { address } = useAccount()
   const { data, isLoading, isError } = useBalance({ address })
-  const balance = data?.value ? formatDecimals(data, 4) : '0.0000'
+  const balance = formatDecimals(data, 4)
 
   return (
     <div className='flex flex-row items-center border-b-2 border-b-bf-gold h-24 px-10 bg-bf-pagebkg'>
