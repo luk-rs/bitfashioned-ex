@@ -1,7 +1,9 @@
+import { saveToIDB } from '@/app/lib/indexed-db'
+import { uploadToPinata } from '@/app/lib/pinata'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import Modal from '../components/modal'
+import Modal from '../../components/modal'
 
 export default function AddContentButton() {
   const [showModal, setShowModal] = useState(false)
@@ -45,8 +47,12 @@ export default function AddContentButton() {
     resetState()
     setShowModal(false)
   }
-  function upload(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    console.log('can upload')
+  async function upload(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<void> {
+    if (!image) return //TODO: probably an error should be logged here as this code is not even supposed to be reached if image has not been set yet
+
+    const ipfsUrl = await uploadToPinata(image)
+
+    await saveToIDB({ title, description, ipfsUrl })
   }
 
   return (

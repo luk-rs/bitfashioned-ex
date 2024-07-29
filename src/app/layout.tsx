@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import { headers } from 'next/headers'
 import { ReactNode } from 'react'
 import { cookieToInitialState } from 'wagmi'
-import Header from './containers/header'
+import Header from './containers/home/header'
 import './globals.css'
 import { Providers } from './providers'
 

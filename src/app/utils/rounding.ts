@@ -9,7 +9,7 @@ type PrintableToken =
   | undefined
 
 export function formatDecimals(token: PrintableToken, decimals: number) {
-  if (!token) return '0.0000'
+  if (!token?.value) return '0.0000'
 
   const balance = ethers.formatUnits(token.value)
   const drift = token.decimals - decimals

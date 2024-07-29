@@ -1,4 +1,4 @@
-import AddContentButton from '@/app/containers/add-content-button'
+import AddContentButton from '@/app/containers/home/add-content-button'
 
 export default function CMS() {
   return (
