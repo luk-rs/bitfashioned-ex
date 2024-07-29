@@ -1,9 +1,9 @@
+import Modal from '@/app/components/modal'
 import { saveToIDB } from '@/app/lib/indexed-db'
 import { uploadToPinata } from '@/app/lib/pinata'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import Modal from '../../components/modal'
 
 export default function AddContentButton() {
   const [showModal, setShowModal] = useState(false)
@@ -53,6 +53,8 @@ export default function AddContentButton() {
     const ipfsUrl = await uploadToPinata(image)
 
     await saveToIDB({ title, description, ipfsUrl })
+
+    handleCloseModal()
   }
 
   return (

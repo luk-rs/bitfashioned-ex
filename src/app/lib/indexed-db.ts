@@ -13,7 +13,7 @@ const init = async () => {
   })
   return db
 }
-type IndexedImage = {
+export type IndexedImage = {
   title: string
   description: string
   ipfsUrl: string
