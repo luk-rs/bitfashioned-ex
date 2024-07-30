@@ -21,7 +21,9 @@ export default function SignInButton() {
       className='flex flex-row space-x-4 bg-bf-signinbkg p-2 rounded text-sm'
       onClick={!address ? signIn : signOut}
     >
-      <Image alt='metamask' src='/metamask_icon.svg' height={20} width={20} />
+      <div className='h-5 w-5 relative'>
+        <Image alt='metamask' src='/metamask_icon.svg' sizes='auto' fill />
+      </div>
       <p>
         {status === 'connecting'
           ? '...'
