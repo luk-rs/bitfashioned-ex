@@ -1,5 +1,5 @@
+import { uploadPinataServerless } from '@/actions/upload-to-pinata-serverless'
 import { saveToIDB } from '@/app/lib/indexed-db'
-import { uploadToPinata } from '@/app/lib/pinata'
 import Image from 'next/image'
 import React, { useRef, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
@@ -49,10 +49,11 @@ export default function AddContentForm({ handleCloseModal }: AddContentFormProps
   }
 
   async function upload(formData: FormData): Promise<void> {
-    if (!!image) formData.append('image', image)
+    if (!image) return
 
-    const file = formData.get('image') as File
-    const ipfsUrl = await uploadToPinata(file)
+    formData.append('image', image)
+
+    const ipfsUrl = await uploadPinataServerless(formData)
 
     const title = formData.get('title') as string
     const description = formData.get('description') as string
