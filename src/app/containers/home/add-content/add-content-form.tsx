@@ -30,9 +30,6 @@ export default function AddContentForm({ handleCloseModal }: AddContentFormProps
     event?.preventDefault()
     checkValidity(image)
   }
-  function updateFormDataImage(formData: FormData) {
-    return formData
-  }
 
   function checkValidity(file: File | undefined) {
     if (!formRef.current) return
