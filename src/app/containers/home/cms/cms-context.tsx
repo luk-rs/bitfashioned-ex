@@ -21,7 +21,6 @@ export const CMSProvider = ({ children }: { children: ReactNode }) => {
     const timeout = setTimeout(async () => {
       if (!address) return
 
-      console.log('signing')
       const signedAddress = await signMessageAsync({ account: address, message: address })
       setSignature(signedAddress)
     }, 500)
