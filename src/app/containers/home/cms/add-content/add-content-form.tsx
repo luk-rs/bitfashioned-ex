@@ -1,18 +1,21 @@
-import { uploadPinataServerless } from '@/actions/upload-to-pinata-serverless'
-import { saveToIDB } from '@/app/lib/indexed-db'
+import { updateGallery } from '@/actions/bitfashioned'
+import { uploadPinataServerless } from '@/actions/pinata'
 import Image from 'next/image'
 import React, { useRef, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { useCMS } from '../cms-context'
 
 type AddContentFormProps = {
   handleCloseModal: () => void
+  elems: string[]
 }
 
-export default function AddContentForm({ handleCloseModal }: AddContentFormProps) {
+export default function AddContentForm({ handleCloseModal, elems }: AddContentFormProps) {
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [canUpload, setCanUpload] = useState(false)
   const [image, setImage] = useState<File | undefined>(undefined)
   const formRef = useRef<HTMLFormElement>(null)
+  const { signature, triggerRender } = useCMS()
 
   const onDrop = (acceptedFiles: File[]) => {
     const file = acceptedFiles[0]
@@ -46,18 +49,18 @@ export default function AddContentForm({ handleCloseModal }: AddContentFormProps
   }
 
   async function upload(formData: FormData): Promise<void> {
-    if (!image) return
+    if (!image || !signature) return
 
     formData.append('image', image)
 
-    const ipfsUrl = await uploadPinataServerless(formData)
+    const cid = await uploadPinataServerless(formData)
 
     const title = formData.get('title') as string
     const description = formData.get('description') as string
-    await saveToIDB({ title, description, ipfsUrl })
+    await updateGallery(signature, elems, cid)
 
     handleCloseModal()
-    //resetState
+    triggerRender()
   }
 
   return (

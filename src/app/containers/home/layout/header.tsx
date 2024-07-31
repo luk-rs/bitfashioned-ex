@@ -14,7 +14,7 @@ export default function Header() {
     <div className='flex flex-row items-center border-b-2 border-b-bf-gold h-24 px-10 bg-bf-pagebkg'>
       <div className='flex items-center space-x-2'>
         <div className='w-8 h-8 relative'>
-          <Image alt='cms_icon' src='/CMS_icon.svg' sizes='auto' fill />
+          <Image alt='cms_icon' src='/CMS_icon.svg' sizes='auto' fill priority />
         </div>
         <span>CMS</span>
       </div>

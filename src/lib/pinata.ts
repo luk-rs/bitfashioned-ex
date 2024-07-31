@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const uploadToPinata = async (file: File) => {
+export const uploadToPinata = async (file: File): Promise<string> => {
   const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`
   const formData = new FormData()
   formData.append('file', file)
@@ -14,7 +14,7 @@ export const uploadToPinata = async (file: File) => {
       }
     })
 
-    return `https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`
+    return response.data.IpfsHash
   } catch (error) {
     console.error('Error uploading file: ', error)
     throw error

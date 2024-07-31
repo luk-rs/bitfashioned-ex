@@ -1,6 +1,10 @@
-import { getFromIDB, IndexedImage } from '@/app/lib/indexed-db'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+
+export type IndexedImage = {
+  title: string
+  description: string
+  ipfsUrl: string
+}
 
 function TileComponent({ elem }: { elem: IndexedImage }) {
   return (
@@ -10,22 +14,23 @@ function TileComponent({ elem }: { elem: IndexedImage }) {
     </div>
   )
 }
-export default function ListContent() {
-  const [elems, setElems] = useState<IndexedImage[]>([])
 
-  useEffect(() => {
-    const refresh = async () => {
-      const indexedElems = await getFromIDB()
-      setElems(indexedElems)
-    }
-    refresh()
-  }, [])
+type ListContentProps = {
+  elems: string[]
+}
 
+export default function ListContent({ elems }: ListContentProps) {
   return (
     <div className='flex flex-wrap justify-center pt-10'>
-      {elems.map((elem, idx) => (
-        <TileComponent key={`elem${idx}`} elem={elem} />
-      ))}
+      {elems
+        .map(cid => ({
+          title: 'random',
+          description: 'randomDesc',
+          ipfsUrl: `https://gateway.pinata.cloud/ipfs/${cid}`
+        }))
+        .map((elem, idx) => (
+          <TileComponent key={`elem${idx}`} elem={elem} />
+        ))}
     </div>
   )
 }
