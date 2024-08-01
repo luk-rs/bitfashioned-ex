@@ -2,7 +2,7 @@ import { getGallery } from '@/actions/bitfashioned'
 import { useEffect, useState } from 'react'
 import AddContent from './add-content'
 import { CMSProvider, useCMS } from './cms-context'
-import ListContent from './list-content/list-content'
+import ListContent from './list-content'
 
 function CMS() {
   const [elems, setElems] = useState<string[]>([])

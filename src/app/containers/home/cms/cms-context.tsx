@@ -18,14 +18,15 @@ export const CMSProvider = ({ children }: { children: ReactNode }) => {
   const { address } = useAccount()
 
   useEffect(() => {
-    const storedSignature = !!address && localStorage.getItem(address)
+    const addr2Sign = !!address && `${address}$`
+    const storedSignature = !!addr2Sign && localStorage.getItem(addr2Sign)
     if (storedSignature) {
       setSignature(storedSignature)
-    } else if (address) {
+    } else if (addr2Sign) {
       const timeout = setTimeout(async () => {
-        const signedAddress = await signMessageAsync({ account: address, message: address })
+        const signedAddress = await signMessageAsync({ account: address, message: addr2Sign })
         setSignature(signedAddress)
-        localStorage.setItem(address, signedAddress)
+        localStorage.setItem(addr2Sign, signedAddress)
       }, 500)
       return () => {
         clearTimeout(timeout)
